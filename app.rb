@@ -14,16 +14,25 @@ statuses = {
 }
 
 get '/answer' do
+  # params 'to' has the number which is called by the customer
+  # locations dictionary uses recipient number as key to get location name
   location = locations[params['to']]
+  # statuses dictionary uses location name as key to get status information
   status = statuses[location]
+  # this respond_with function returns NCCO with status of location
   respond_with(location, status)
 end
 
 post '/city' do
+  # read the request and parse into JSON
   body = JSON.parse(request.body.read)
+  # retrieve DTMF from the request body and convert into integer
   selection = body['dtmf'].to_i
+  # use DTMF-1 as index key to retrieve location name from statuses dictionary
   location = statuses.keys[selection-1]
+  # get status information with location from statuses dictionary
   status = statuses[location]
+  # returns NCCO with status of location
   respond_with(location, status)
 end
 
@@ -45,6 +54,7 @@ def respond_with(location, status)
     },
     {
       'action': 'input',
+      # ask for input of DTMF to retrieve status of location
       'eventUrl': ["#{ENV['DOMAIN']}/city"],
       'timeOut': 10,
       'maxDigits': 1
