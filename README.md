@@ -1,5 +1,5 @@
 # Smart Local Numbers Solution with Ruby
-## Replace expensive toll-free 800 numbers with multiple local numbers
+Replace expensive toll-free 800 numbers with multiple local numbers
 
 ## Prerequisites
 * A [Nexmo account](https://dashboard.nexmo.com/sign-up)
@@ -49,6 +49,6 @@ ruby app.rb
 * The server plays back a message for the city you just called a local number for
 * You can play back the messages for the other cities after a prompt
 
-Reference:
+## Reference:
 * Tutorial Page https://developer.nexmo.com/tutorials/smart-local-numbers
 * GitHub Page https://github.com/Nexmo/800-replacement
